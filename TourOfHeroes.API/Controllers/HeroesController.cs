@@ -22,9 +22,9 @@ namespace TourOfHeroes.API.Controllers
 
         // GET: api/Heroes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hero>>> GetHeroes()
+        public async Task<ActionResult<IEnumerable<Hero>>> GetHeroes([FromQuery]string name = "")
         {
-            return await _context.Heroes.ToListAsync();
+            return await _context.Heroes.Where(hero => hero.Name.Contains(name)).ToListAsync();
         }
 
         // GET: api/Heroes/5
